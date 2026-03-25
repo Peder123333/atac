@@ -1,287 +1,1470 @@
+
+Konversation med Gemini
+Du sa
 <!DOCTYPE html>
+
 <html lang="sv">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ATAC Entreprenad & Montage AB – Professionella lösningar inom entreprenad och montage.">
-    <title>ATAC Entreprenad & Montage AB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --black: #080808;
-        --dark: #111111;
-        --charcoal: #1a1a1a;
-        --steel: #252525;
-        --mid-grey: #3a3a3a;
-        --teal: #2a9bb5;
-        --teal-light: #3db8d4;
-        --white: #f0f0f0;
-        --grey: #888888;
-        --light-grey: #c0c0c0;
-      }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+<meta charset="UTF-8">
 
-      /* ── NAV (Uppdaterad med Glassmorphism) ── */
-      nav {
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.9rem 3rem;
-        background: rgba(8,8,8,0.75);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(42,155,181,0.2);
-      }
-      .nav-logo img { height: 52px; width: auto; }
-      .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-      .nav-links a { color: var(--light-grey); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; transition: 0.3s; }
-      .nav-links a:hover { color: var(--teal); }
-      .nav-cta { background: var(--teal) !important; color: var(--black) !important; padding: 0.55rem 1.5rem; font-weight: 700 !important; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      /* ── HERO ── */
-      .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: var(--black); }
-      .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(42,155,181,0.07) 0%, transparent 70%); }
-      .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 9rem 2rem 4rem; max-width: 1100px; z-index: 2; }
-      .hero-logo-big img { height: 280px; width: auto; margin-bottom: 2rem; filter: drop-shadow(0 0 30px rgba(42,155,181,0.15)); }
-      .hero-title { font-family: 'Oswald', sans-serif; font-size: clamp(3rem, 7vw, 7rem); font-weight: 700; line-height: 1.0; margin-bottom: 1.5rem; text-transform: uppercase; }
-      .hero-title em { font-style: normal; color: var(--teal); }
-      .hero-desc { font-size: 1.25rem; color: var(--grey); max-width: 700px; margin-bottom: 3rem; font-weight: 300; }
-      .btn-primary { background: var(--teal); color: var(--black); padding: 1.2rem 3.5rem; font-family: 'Barlow Condensed'; font-weight: 700; text-transform: uppercase; text-decoration: none; transition: 0.3s; display: inline-block; border:none; cursor:pointer; }
-      .btn-primary:hover { transform: translateY(-3px); background: var(--teal-light); }
+<title>ATAC Entreprenad & Montage AB</title>
 
-      /* Stats */
-      .hero-stats { display: flex; gap: 4rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--steel); }
-      .stat-num { font-family: 'Oswald'; font-size: 3.5rem; color: var(--teal); line-height: 1; }
-      .stat-label { font-size: 0.8rem; color: var(--grey); text-transform: uppercase; margin-top: 0.5rem; }
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 
-      /* ── SECTIONS ── */
-      .section { padding: 7rem 10%; }
-      .section-header { margin-bottom: 4rem; }
-      .section-eyebrow { font-family: 'Barlow Condensed'; color: var(--teal); letter-spacing: 0.4em; text-transform: uppercase; display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-      .section-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--teal); }
-      .section-title { font-family: 'Oswald'; font-size: 3.5rem; text-transform: uppercase; }
+<style>
 
-      /* ── SERVICES ── */
-      .services { background: var(--dark); }
-      .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--steel); border: 1px solid var(--steel); }
-      .service-card { background: var(--charcoal); padding: 3rem 2.5rem; position: relative; transition: 0.3s; }
-      .service-card:hover { background: #202020; }
-      .service-num { font-family: 'Oswald'; font-size: 4rem; color: rgba(42,155,181,0.07); line-height: 1; margin-bottom: 1.5rem; }
-      .service-title { font-family: 'Barlow Condensed'; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.8rem; }
-      .service-desc { font-size: 0.9rem; color: var(--grey); font-weight: 300; }
+  :root {
 
-      /* ── PROJECTS (Original rutnät) ── */
-      .projects-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4px; }
-      .project-card { position: relative; overflow: hidden; height: 350px; }
-      .project-card.large { grid-row: span 2; height: 704px; }
-      .project-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: 0.7s; }
-      .project-card:hover img { transform: scale(1.05); filter: brightness(0.7); }
-      .project-info { position: absolute; bottom: 0; padding: 2rem; }
-      .project-name { font-family: 'Oswald'; font-size: 1.2rem; text-transform: uppercase; }
+    --black: #080808;
 
-      /* ── REVIEWS ── */
-      .reviews { background: var(--charcoal); }
-      .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--steel); }
-      .review-card { background: var(--dark); padding: 3rem; }
-      .review-text { font-style: italic; color: var(--light-grey); margin-bottom: 1.5rem; }
+    --dark: #111111;
 
-      /* ── CTA BAND ── */
-      .cta-band { background: var(--teal); padding: 5rem 10%; display: flex; justify-content: space-between; align-items: center; }
-      .cta-band h2 { font-family: 'Oswald'; font-size: 2.5rem; color: var(--black); text-transform: uppercase; }
-      .btn-dark { background: var(--black); color: var(--white); padding: 1rem 2.5rem; text-decoration: none; font-weight: 700; text-transform: uppercase; }
+    --charcoal: #1a1a1a;
 
-      /* ── CONTACT ── */
-      .contact { background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; }
-      .contact-info { padding: 6rem 5rem; }
-      .contact-form-wrap { padding: 6rem 5rem; background: var(--charcoal); border-left: 1px solid var(--steel); }
-      .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
-      .form-group label { font-size: 0.7rem; color: var(--teal); text-transform: uppercase; letter-spacing: 2px; }
-      input, select, textarea { background: var(--dark); border: 1px solid var(--mid-grey); color: white; padding: 0.8rem; font-family: inherit; }
-      #successBox { display:none; padding: 1rem; background: rgba(42,155,181,0.2); border: 1px solid var(--teal); color: var(--teal); margin-bottom: 1rem; }
+    --steel: #252525;
 
-      /* ── FOOTER ── */
-      footer { background: var(--black); padding: 2.5rem 5rem; display: flex; justify-content: space-between; border-top: 1px solid var(--steel); align-items: center; }
-      .footer-copy { font-size: 0.8rem; color: var(--grey); }
+    --mid-grey: #3a3a3a;
 
-      /* Animationer */
-      .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
-      .reveal.active { opacity: 1; transform: translateY(0); }
+    --teal: #2a9bb5;
 
-      @media (max-width: 900px) {
-        .nav-links { display: none; }
-        .projects-grid, .contact, .reviews-grid { grid-template-columns: 1fr; }
-        .cta-band { flex-direction: column; gap: 2rem; text-align: center; }
-        .hero-stats { flex-wrap: wrap; justify-content: center; }
-      }
-    </style>
+    --teal-light: #3db8d4;
+
+    --teal-dark: #1e7a8f;
+
+    --logo-grey: #7a7a7a;
+
+    --white: #f0f0f0;
+
+    --off-white: #e0e0e0;
+
+    --grey: #888888;
+
+    --light-grey: #c0c0c0;
+
+  }
+
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+
+
+  body {
+
+    background: var(--black);
+
+    color: var(--white);
+
+    font-family: 'Barlow', sans-serif;
+
+    overflow-x: hidden;
+
+  }
+
+
+
+  /* ── NAV ── */
+
+  nav {
+
+    position: fixed;
+
+    top: 0; left: 0; right: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0.9rem 3rem;
+
+    background: rgba(8,8,8,0.95);
+
+    backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid rgba(42,155,181,0.2);
+
+  }
+
+
+
+  .nav-logo img {
+
+    height: 52px;
+
+    width: auto;
+
+    display: block;
+
+  }
+
+
+
+  .nav-links {
+
+    display: flex;
+
+    gap: 2.5rem;
+
+    list-style: none;
+
+    align-items: center;
+
+  }
+
+
+
+  .nav-links a {
+
+    color: var(--light-grey);
+
+    text-decoration: none;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    font-weight: 500;
+
+    transition: color 0.3s;
+
+  }
+
+
+
+  .nav-links a:hover { color: var(--teal); }
+
+
+
+  .nav-cta {
+
+    background: var(--teal) !important;
+
+    color: var(--black) !important;
+
+    padding: 0.55rem 1.5rem;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 0.12em !important;
+
+    transition: background 0.3s !important;
+
+  }
+
+
+
+  .nav-cta:hover { background: var(--teal-light) !important; }
+
+
+
+  /* ── HERO ── */
+
+  .hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--black);
+
+  }
+
+
+
+  .hero::before {
+
+    content: '';
+
+    position: absolute;
+
+    inset: 0;
+
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(42,155,181,0.07) 0%, transparent 70%);
+
+    pointer-events: none;
+
+  }
+
+
+
+  .hero-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 9rem 2rem 4rem;
+
+    max-width: 1100px;
+
+    width: 100%;
+
+    z-index: 2;
+
+  }
+
+
+
+  .hero-logo-big {
+
+    margin-bottom: 2.5rem;
+
+  }
+
+
+
+  .hero-logo-big img {
+
+    height: 380px;
+
+    width: auto;
+
+    display: block;
+
+    filter: drop-shadow(0 0 30px rgba(42,155,181,0.15));
+
+  }
+
+
+
+  .hero-eyebrow {
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-size: 1rem;
+
+    letter-spacing: 0.4em;
+
+    text-transform: uppercase;
+
+    color: var(--teal);
+
+    margin-bottom: 1.5rem;
+
+  }
+
+
+
+  .hero-title {
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: clamp(4rem, 7vw, 8rem);
+
+    font-weight: 700;
+
+    line-height: 1.0;
+
+    margin-bottom: 1.5rem;
+
+    color: var(--white);
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.02em;
+
+  }
+
+
+
+  .hero-title em {
+
+    font-style: normal;
+
+    color: var(--teal);
+
+  }
+
+
+
+  .hero-desc {
+
+    font-size: 1.25rem;
+
+    line-height: 1.8;
+
+    color: var(--grey);
+
+    max-width: 700px;
+
+    margin-bottom: 3rem;
+
+    font-weight: 300;
+
+  }
+
+
+
+  .hero-actions {
+
+    display: flex;
+
+    gap: 1rem;
+
+    align-items: center;
+
+    justify-content: center;
+
+  }
+
+
+
+  .btn-primary {
+
+    background: var(--teal);
+
+    color: var(--black);
+
+    padding: 1.2rem 3rem;
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-weight: 700;
+
+    font-size: 1.1rem;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    text-decoration: none;
+
+    transition: all 0.3s;
+
+    display: inline-block;
+
+  }
+
+
+
+  .btn-primary:hover {
+
+    background: var(--teal-light);
+
+    transform: translateY(-2px);
+
+  }
+
+
+
+  .btn-secondary {
+
+    color: var(--light-grey);
+
+    font-size: 0.82rem;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid var(--mid-grey);
+
+    padding-bottom: 2px;
+
+    transition: all 0.3s;
+
+  }
+
+
+
+  .btn-secondary:hover {
+
+    color: var(--teal);
+
+    border-color: var(--teal);
+
+  }
+
+
+
+  .hero-stats {
+
+    display: flex;
+
+    gap: 3rem;
+
+    margin-top: 4rem;
+
+    padding-top: 3rem;
+
+    border-top: 1px solid var(--steel);
+
+    justify-content: center;
+
+  }
+
+
+
+  .stat-num {
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: 3.5rem;
+
+    font-weight: 600;
+
+    color: var(--teal);
+
+    line-height: 1;
+
+  }
+
+
+
+  .stat-label {
+
+    font-size: 0.9rem;
+
+    color: var(--grey);
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    margin-top: 0.35rem;
+
+  }
+
+
+
+  /* ── SECTIONS ── */
+
+  .section { padding: 7rem 5rem; }
+
+
+
+  .section-header { margin-bottom: 4rem; }
+
+
+
+  .section-eyebrow {
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.45em;
+
+    text-transform: uppercase;
+
+    color: var(--teal);
+
+    margin-bottom: 1rem;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+
+  }
+
+
+
+  .section-eyebrow::before {
+
+    content: '';
+
+    display: block;
+
+    width: 28px;
+
+    height: 1px;
+
+    background: var(--teal);
+
+  }
+
+
+
+  .section-title {
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+
+    font-weight: 600;
+
+    line-height: 1.1;
+
+    color: var(--white);
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.02em;
+
+  }
+
+
+
+  /* ── SERVICES ── */
+
+  .services { background: var(--dark); }
+
+
+
+  .services-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1px;
+
+    background: var(--steel);
+
+    border: 1px solid var(--steel);
+
+  }
+
+
+
+  .service-card {
+
+    background: var(--charcoal);
+
+    padding: 3rem 2.5rem;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: background 0.3s;
+
+  }
+
+
+
+  .service-card::after {
+
+    content: '';
+
+    position: absolute;
+
+    bottom: 0; left: 0;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: var(--teal);
+
+    transform: scaleX(0);
+
+    transition: transform 0.4s ease;
+
+    transform-origin: left;
+
+  }
+
+
+
+  .service-card:hover { background: #202020; }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+
+
+  .service-num {
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: 4rem;
+
+    font-weight: 700;
+
+    color: rgba(42,155,181,0.07);
+
+    line-height: 1;
+
+    margin-bottom: 1.5rem;
+
+  }
+
+
+
+  .service-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+
+
+
+  .service-title {
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-size: 1.2rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+
+    color: var(--white);
+
+    margin-bottom: 0.8rem;
+
+  }
+
+
+
+  .service-desc {
+
+    font-size: 0.88rem;
+
+    line-height: 1.75;
+
+    color: var(--grey);
+
+    font-weight: 300;
+
+  }
+
+
+
+  /* ── PROJECTS ── */
+
+  .projects { background: var(--black); }
+
+
+
+  .projects-grid {
+
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr;
+
+    grid-template-rows: auto auto;
+
+    gap: 4px;
+
+  }
+
+
+
+  .project-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+  }
+
+
+
+  .project-card.large { grid-row: span 2; }
+
+
+
+  .project-card img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.7s ease, filter 0.5s;
+
+    filter: brightness(0.45);
+
+    min-height: 280px;
+
+  }
+
+
+
+  .project-card.large img { min-height: 560px; }
+
+
+
+  .project-card:hover img {
+
+    transform: scale(1.06);
+
+    filter: brightness(0.6);
+
+  }
+
+
+
+  .project-card:hover .project-bar { background: var(--teal); }
+
+
+
+  .project-info {
+
+    position: absolute;
+
+    bottom: 0; left: 0; right: 0;
+
+    padding: 2rem;
+
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+
+  }
+
+
+
+  .project-bar {
+
+    width: 32px;
+
+    height: 2px;
+
+    background: var(--teal);
+
+    margin-bottom: 0.8rem;
+
+    transition: width 0.4s;
+
+  }
+
+
+
+  .project-card:hover .project-bar { width: 60px; }
+
+
+
+  .project-tag {
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-size: 0.62rem;
+
+    letter-spacing: 0.28em;
+
+    text-transform: uppercase;
+
+    color: var(--teal);
+
+    margin-bottom: 0.4rem;
+
+  }
+
+
+
+  .project-name {
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: 1.2rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
+
+    color: var(--white);
+
+  }
+
+
+
+  /* ── REVIEWS ── */
+
+  .reviews { background: var(--charcoal); }
+
+
+
+  .reviews-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 2px;
+
+    background: var(--steel);
+
+  }
+
+
+
+  .review-card {
+
+    background: var(--dark);
+
+    padding: 3rem;
+
+  }
+
+
+
+  .review-stars {
+
+    color: var(--teal);
+
+    font-size: 1.1rem;
+
+    letter-spacing: 0.08em;
+
+    margin-bottom: 1.5rem;
+
+  }
+
+
+
+  .review-text {
+
+    font-size: 0.98rem;
+
+    line-height: 1.85;
+
+    color: var(--light-grey);
+
+    font-weight: 300;
+
+    margin-bottom: 2rem;
+
+    font-style: italic;
+
+  }
+
+
+
+  .review-author { display: flex; align-items: center; gap: 1rem; }
+
+
+
+  .review-avatar {
+
+    width: 44px;
+
+    height: 44px;
+
+    border-radius: 50%;
+
+    background: var(--teal);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: 'Oswald', sans-serif;
+
+    font-weight: 600;
+
+    font-size: 1rem;
+
+    color: var(--black);
+
+    flex-shrink: 0;
+
+  }
+
+
+
+  .review-name {
+
+    font-weight: 600;
+
+    font-size: 0.95rem;
+
+    letter-spacing: 0.04em;
+
+    color: var(--white);
+
+  }
+
+
+
+  .review-source {
+
+    font-size: 0.73rem;
+
+    color: var(--grey);
+
+    margin-top: 0.2rem;
+
+  }
+
+
+
+  /* ── CTA BAND ── */
+
+  .cta-band {
+
+    background: var(--teal);
+
+    padding: 5rem;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    align-items: center;
+
+    gap: 3rem;
+
+  }
+
+
+
+  .cta-band h2 {
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: clamp(2rem, 3vw, 3.2rem);
+
+    font-weight: 700;
+
+    color: var(--black);
+
+    line-height: 1.1;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.02em;
+
+  }
+
+
+
+  .cta-band p {
+
+    color: rgba(0,0,0,0.5);
+
+    margin-top: 0.8rem;
+
+    font-size: 1rem;
+
+  }
+
+
+
+  .btn-dark {
+
+    background: var(--black);
+
+    color: var(--white);
+
+    padding: 1.1rem 2.8rem;
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-weight: 700;
+
+    font-size: 1rem;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    text-decoration: none;
+
+    transition: all 0.3s;
+
+    white-space: nowrap;
+
+    display: inline-block;
+
+  }
+
+
+
+  .btn-dark:hover {
+
+    background: #1a1a1a;
+
+    transform: translateY(-2px);
+
+  }
+
+
+
+  /* ── CONTACT ── */
+
+  .contact {
+
+    background: var(--dark);
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    min-height: 50vh;
+
+  }
+
+
+
+  .contact-info { padding: 6rem 5rem; }
+
+
+
+  .contact-details {
+
+    margin-top: 3rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2rem;
+
+  }
+
+
+
+  .contact-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+
+
+
+  .contact-item-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    border: 1px solid var(--teal);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1.1rem;
+
+    flex-shrink: 0;
+
+  }
+
+
+
+  .contact-item-label {
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.22em;
+
+    text-transform: uppercase;
+
+    color: var(--teal);
+
+    margin-bottom: 0.3rem;
+
+  }
+
+
+
+  .contact-item-val {
+
+    font-size: 1.05rem;
+
+    color: var(--white);
+
+    font-weight: 500;
+
+  }
+
+
+
+  .contact-item-val a {
+
+    color: var(--white);
+
+    text-decoration: none;
+
+    transition: color 0.3s;
+
+  }
+
+
+
+  .contact-item-val a:hover { color: var(--teal); }
+
+
+
+  /* ── FORM ── */
+
+  .contact-form-wrap {
+
+    padding: 6rem 5rem;
+
+    background: var(--charcoal);
+
+    border-left: 1px solid var(--steel);
+
+  }
+
+
+
+  .form-heading {
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: 1.8rem;
+
+    font-weight: 600;
+
+    color: var(--white);
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.02em;
+
+    margin-bottom: 0.4rem;
+
+  }
+
+
+
+  .form-sub {
+
+    color: var(--grey);
+
+    font-size: 0.88rem;
+
+    margin-bottom: 2rem;
+
+  }
+
+
+
+  .contact-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1.2rem;
+
+  }
+
+
+
+  .form-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 1.2rem;
+
+  }
+
+
+
+  .form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4rem;
+
+  }
+
+
+
+  .form-group label {
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
+
+    color: var(--teal);
+
+    font-weight: 600;
+
+  }
+
+
+
+  .form-group input,
+
+  .form-group select,
+
+  .form-group textarea {
+
+    background: var(--dark);
+
+    border: 1px solid var(--mid-grey);
+
+    color: var(--white);
+
+    padding: 0.8rem 1rem;
+
+    font-family: 'Barlow', sans-serif;
+
+    font-size: 0.93rem;
+
+    outline: none;
+
+    transition: border-color 0.3s;
+
+    resize: none;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+  }
+
+
+
+  .form-group input::placeholder,
+
+  .form-group textarea::placeholder { color: var(--grey); font-weight: 300; }
+
+
+
+  .form-group select {
+
+    cursor: pointer;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888888' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+
+    background-position: right 1rem center;
+
+    padding-right: 2.5rem;
+
+  }
+
+
+
+  .form-group select option { background: var(--dark); color: var(--white); }
+
+
+
+  .form-group input:focus,
+
+  .form-group select:focus,
+
+  .form-group textarea:focus { border-color: var(--teal); }
+
+
+
+  .btn-submit {
+
+    background: var(--teal);
+
+    color: var(--black);
+
+    border: none;
+
+    padding: 1rem 2rem;
+
+    font-family: 'Barlow Condensed', sans-serif;
+
+    font-weight: 700;
+
+    font-size: 0.95rem;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: all 0.3s;
+
+    align-self: flex-start;
+
+    margin-top: 0.5rem;
+
+  }
+
+
+
+  .btn-submit:hover {
+
+    background: var(--teal-light);
+
+    transform: translateY(-2px);
+
+  }
+
+
+
+  .form-success-msg {
+
+    background: rgba(42,155,181,0.1);
+
+    border: 1px solid var(--teal);
+
+    color: var(--teal);
+
+    padding: 1rem 1.5rem;
+
+    font-size: 0.95rem;
+
+    margin-bottom: 1.5rem;
+
+  }
+
+
+
+  /* ── FOOTER ── */
+
+  footer {
+
+    background: var(--black);
+
+    padding: 2.5rem 5rem;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-top: 1px solid var(--steel);
+
+  }
+
+
+
+  .footer-copy { font-size: 0.78rem; color: var(--grey); }
+
+
+
+  .footer-logo img { height: 36px; width: auto; opacity: 0.7; }
+
+
+
+  .footer-social { display: flex; gap: 1.5rem; }
+
+
+
+  .footer-social a {
+
+    color: var(--grey);
+
+    text-decoration: none;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    transition: color 0.3s;
+
+  }
+
+
+
+  .footer-social a:hover { color: var(--teal); }
+
+
+
+  /* ── ANIMATIONS ── */
+
+  @keyframes fadeUp {
+
+    from { opacity: 0; transform: translateY(28px); }
+
+    to { opacity: 1; transform: translateY(0); }
+
+  }
+
+
+
+  .fade-up { opacity: 0; animation: fadeUp 0.8s forwards; }
+
+  .fade-up-1 { animation-delay: 0.1s; }
+
+  .fade-up-2 { animation-delay: 0.3s; }
+
+  .fade-up-3 { animation-delay: 0.5s; }
+
+  .fade-up-4 { animation-delay: 0.7s; }
+
+  .fade-up-5 { animation-delay: 0.9s; }
+
+
+
+  /* ── RESPONSIVE ── */
+
+  @media (max-width: 900px) {
+
+    nav { padding: 1rem 1.5rem; }
+
+    .nav-links { display: none; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+
+    .hero-left { padding: 8rem 2rem 3rem; }
+
+    .hero-right { height: 55vw; }
+
+    .hero-img-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+
+    .section { padding: 4rem 1.5rem; }
+
+    .services-grid { grid-template-columns: 1fr; }
+
+    .projects-grid { grid-template-columns: 1fr; }
+
+    .project-card.large { grid-row: span 1; }
+
+    .reviews-grid { grid-template-columns: 1fr; }
+
+    .cta-band { grid-template-columns: 1fr; padding: 3rem 2rem; }
+
+    .contact { grid-template-columns: 1fr; }
+
+    .contact-info { padding: 4rem 1.5rem; }
+
+    .contact-form-wrap { padding: 4rem 1.5rem; border-left: none; border-top: 1px solid var(--steel); }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; gap: 1rem; padding: 2rem; text-align: center; }
+
+  }
+
+</style>
+
 </head>
+
 <body>
 
+
+
+<!-- NAV -->
+
 <nav>
+
   <div class="nav-logo">
-    <img src="logo.png" alt="ATAC Logotyp">
-  </div>
-  <ul class="nav-links">
-    <li><a href="#services">Tjänster</a></li>
-    <li><a href="#projects">Projekt</a></li>
-    <li><a href="#reviews">Referenser</a></li>
-    <li><a href="#contact">Kontakt</a></li>
-    <li><a href="#contact" class="nav-cta">Få Offert</a></li>
-  </ul>
-</nav>
 
-<section class="hero">
-  <div class="hero-content reveal">
-    <div class="hero-logo-big"><img src="logo_större.png" alt="ATAC Stor Logotyp"></div>
-    <div class="hero-eyebrow">Precision & Kvalitet</div>
-    <h1 class="hero-title">Vi bygger <em>framtiden</em></h1>
-    <p class="hero-desc">Specialister på entreprenad och montage med fokus på hållbara lösningar och teknisk expertis.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Starta Projekt</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Års Erfarenhet</div></div>
-      <div class="stat-item"><div class="stat-num">450+</div><div class="stat-label">Projekt Klara</div></div>
-      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Nöjda Kunder</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="services" class="section services">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">Vad vi gör</div>
-    <h2 class="section-title">Våra Tjänster</h2>
-  </div>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-num">01</div>
-      <h3 class="service-title">Industrimontage</h3>
-      <p class="service-desc">Vi utför avancerade montage av stål och maskiner för tung industri.</p>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-num">02</div>
-      <h3 class="service-title">Byggentreprenad</h3>
-      <p class="service-desc">Helhetsansvar för byggprojekt från planering till slutbesiktning.</p>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-num">03</div>
-      <h3 class="service-title">Projektledning</h3>
-      <p class="service-desc">Strategisk styrning för att säkerställa att tidsplan och budget hålls.</p>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="section projects">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">Referenser</div>
-    <h2 class="section-title">Utvalda Projekt</h2>
-  </div>
-  <div class="projects-grid">
-    <div class="project-card large reveal">
-      <img src="projekt1.jpg" alt="Projekt 1">
-      <div class="project-info">
-        <div class="project-name">Industrihall Stockholm</div>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <img src="projekt2.jpg" alt="Projekt 2">
-      <div class="project-info"><div class="project-name">Stålkonstruktion Uppsala</div></div>
-    </div>
-    <div class="project-card reveal">
-      <img src="projekt3.jpg" alt="Projekt 3">
-      <div class="project-info"><div class="project-name">Specialmontage Gävle</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="reviews" class="section reviews">
-  <div class="reviews-grid">
-    <div class="review-card reveal">
-      <div class="review-text">"ATAC levererade över förväntan. Deras precision i montaget var imponerande."</div>
-      <div class="review-name">- Janne Andersson, Projektledare</div>
-    </div>
-    <div class="review-card reveal">
-      <div class="review-text">"Proffsigt bemötande och extremt kunniga inom stålkonstruktion."</div>
-      <div class="review-name">- Maria Lindqvist, Fastighetsägare</div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-band reveal">
-  <h2>Redo att starta ditt nästa projekt?</h2>
-  <a href="#contact" class="btn-dark">Kontakta oss idag</a>
-</section>
-
-<section id="contact" class="contact">
-  <div class="contact-info reveal">
-    <div class="section-eyebrow">Hör av dig</div>
-    <h2 class="section-title">Kontaktuppgifter</h2>
-    <div style="margin-top: 3rem;">
-      <p><strong>Adress:</strong> Industrivägen 12, Stockholm</p>
-      <p><strong>E-post:</strong> info@atacentreprenad.se</p>
-      <p><strong>Tele:</strong> 08-123 45 67</p>
-    </div>
-  </div>
-  <div class="contact-form-wrap reveal">
-    <div id="successBox">Tack! Vi återkommer så snart vi kan.</div>
-    <form id="mainContactForm">
-      <div class="form-group">
-        <label>Namn</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>E-post</label>
-        <input type="email" required>
-      </div>
-      <div class="form-group">
-        <label>Ärende</label>
-        <select>
-          <option>Offertförfrågan</option>
-          <option>Allmän fråga</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Meddelande</label>
-        <textarea rows="4" required></textarea>
-      </div>
-      <button type="submit" class="btn-primary">Skicka Meddelande</button>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-copy">&copy; 2026 ATAC Entreprenad & Montage AB</div>
-  <div class="footer-logo"><img src="logo.png" alt="Logo"></div>
-</footer>
-
-<script>
-    // Reveal animation
-    function reveal() {
-      var reveals = document.querySelectorAll(".reveal");
-      for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        if (elementTop < windowHeight - 100) {
-          reveals[i].classList.add("active");
-        }
-      }
-    }
-    window.addEventListener("scroll", reveal);
-    reveal();
-
-    // Formulär-logik
-    document.getElementById('mainContactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        this.style.display = 'none';
-        document.getElementById('successBox').style.display = 'block';
-    });
-</script>
-
-</body>
-</html>
+    <img src="data:image/png;base64,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
