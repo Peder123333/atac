@@ -3,199 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ATAC Entreprenad & Montage AB – Professionella lösningar inom entreprenad och montage med högsta kvalitet i fokus.">
-    <title>ATAC Entreprenad & Montage AB | Kvalitet i varje detalj</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@300;400;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
-    
+    <meta name="description" content="ATAC Entreprenad & Montage AB – Professionella lösningar inom entreprenad och montage.">
+    <title>ATAC Entreprenad & Montage AB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --black: #080808;
-            --dark: #111111;
-            --charcoal: #1a1a1a;
-            --steel: #252525;
-            --teal: #2a9bb5;
-            --teal-light: #3db8d4;
-            --white: #f0f0f0;
-            --grey: #888888;
-            --light-grey: #c0c0c0;
-        }
+      :root {
+        --black: #080808;
+        --dark: #111111;
+        --charcoal: #1a1a1a;
+        --steel: #252525;
+        --mid-grey: #3a3a3a;
+        --teal: #2a9bb5;
+        --teal-light: #3db8d4;
+        --white: #f0f0f0;
+        --grey: #888888;
+        --light-grey: #c0c0c0;
+      }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; line-height: 1.6; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
 
-        /* Navigation med Glassmorphism */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 5%;
-            background: rgba(8, 8, 8, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(42, 155, 181, 0.2);
-        }
+      /* ── NAV (Uppdaterad med Glassmorphism) ── */
+      nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.9rem 3rem;
+        background: rgba(8,8,8,0.75);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(42,155,181,0.2);
+      }
+      .nav-logo img { height: 52px; width: auto; }
+      .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+      .nav-links a { color: var(--light-grey); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; transition: 0.3s; }
+      .nav-links a:hover { color: var(--teal); }
+      .nav-cta { background: var(--teal) !important; color: var(--black) !important; padding: 0.55rem 1.5rem; font-weight: 700 !important; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; }
 
-        .nav-logo img { height: 45px; width: auto; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--light-grey); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: var(--teal); }
+      /* ── HERO ── */
+      .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: var(--black); }
+      .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(42,155,181,0.07) 0%, transparent 70%); }
+      .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 9rem 2rem 4rem; max-width: 1100px; z-index: 2; }
+      .hero-logo-big img { height: 280px; width: auto; margin-bottom: 2rem; filter: drop-shadow(0 0 30px rgba(42,155,181,0.15)); }
+      .hero-title { font-family: 'Oswald', sans-serif; font-size: clamp(3rem, 7vw, 7rem); font-weight: 700; line-height: 1.0; margin-bottom: 1.5rem; text-transform: uppercase; }
+      .hero-title em { font-style: normal; color: var(--teal); }
+      .hero-desc { font-size: 1.25rem; color: var(--grey); max-width: 700px; margin-bottom: 3rem; font-weight: 300; }
+      .btn-primary { background: var(--teal); color: var(--black); padding: 1.2rem 3.5rem; font-family: 'Barlow Condensed'; font-weight: 700; text-transform: uppercase; text-decoration: none; transition: 0.3s; display: inline-block; border:none; cursor:pointer; }
+      .btn-primary:hover { transform: translateY(-3px); background: var(--teal-light); }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(42, 155, 181, 0.1) 0%, transparent 75%);
-            padding: 0 20px;
-        }
+      /* Stats */
+      .hero-stats { display: flex; gap: 4rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--steel); }
+      .stat-num { font-family: 'Oswald'; font-size: 3.5rem; color: var(--teal); line-height: 1; }
+      .stat-label { font-size: 0.8rem; color: var(--grey); text-transform: uppercase; margin-top: 0.5rem; }
 
-        .hero-title { font-family: 'Oswald', sans-serif; font-size: clamp(3.5rem, 12vw, 8rem); text-transform: uppercase; line-height: 0.85; margin-bottom: 1rem; }
-        .hero-title span { color: var(--teal); }
-        .hero-subtitle { color: var(--grey); font-size: clamp(1rem, 2vw, 1.4rem); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 3rem; }
+      /* ── SECTIONS ── */
+      .section { padding: 7rem 10%; }
+      .section-header { margin-bottom: 4rem; }
+      .section-eyebrow { font-family: 'Barlow Condensed'; color: var(--teal); letter-spacing: 0.4em; text-transform: uppercase; display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+      .section-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--teal); }
+      .section-title { font-family: 'Oswald'; font-size: 3.5rem; text-transform: uppercase; }
 
-        /* Knappar */
-        .btn-primary { background: var(--teal); color: var(--black); padding: 1.1rem 2.8rem; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; display: inline-block; border: none; cursor: pointer; }
-        .btn-primary:hover { background: var(--teal-light); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(42, 155, 181, 0.2); }
+      /* ── SERVICES ── */
+      .services { background: var(--dark); }
+      .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--steel); border: 1px solid var(--steel); }
+      .service-card { background: var(--charcoal); padding: 3rem 2.5rem; position: relative; transition: 0.3s; }
+      .service-card:hover { background: #202020; }
+      .service-num { font-family: 'Oswald'; font-size: 4rem; color: rgba(42,155,181,0.07); line-height: 1; margin-bottom: 1.5rem; }
+      .service-title { font-family: 'Barlow Condensed'; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.8rem; }
+      .service-desc { font-size: 0.9rem; color: var(--grey); font-weight: 300; }
 
-        /* Animationer */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.9s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+      /* ── PROJECTS (Original rutnät) ── */
+      .projects-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4px; }
+      .project-card { position: relative; overflow: hidden; height: 350px; }
+      .project-card.large { grid-row: span 2; height: 704px; }
+      .project-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: 0.7s; }
+      .project-card:hover img { transform: scale(1.05); filter: brightness(0.7); }
+      .project-info { position: absolute; bottom: 0; padding: 2rem; }
+      .project-name { font-family: 'Oswald'; font-size: 1.2rem; text-transform: uppercase; }
 
-        /* Tjänster */
-        .section { padding: 8rem 10%; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; background: var(--steel); border: 1px solid var(--steel); margin-top: 4rem; }
-        .service-card { background: var(--charcoal); padding: 3.5rem 2.5rem; transition: 0.3s; }
-        .service-card:hover { background: #1f1f1f; }
-        .service-card h3 { font-family: 'Oswald'; color: var(--teal); margin-bottom: 1rem; letter-spacing: 1px; }
+      /* ── REVIEWS ── */
+      .reviews { background: var(--charcoal); }
+      .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--steel); }
+      .review-card { background: var(--dark); padding: 3rem; }
+      .review-text { font-style: italic; color: var(--light-grey); margin-bottom: 1.5rem; }
 
-        /* Kontaktformulär */
-        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        input, textarea { width: 100%; background: var(--dark); border: 1px solid var(--steel); color: white; padding: 1.2rem; font-family: 'Barlow'; transition: 0.3s; }
-        input:focus, textarea:focus { border-color: var(--teal); outline: none; }
-        
-        #successMsg { display: none; background: rgba(42, 155, 181, 0.1); color: var(--teal); padding: 1.5rem; border: 1px solid var(--teal); margin-top: 1rem; }
+      /* ── CTA BAND ── */
+      .cta-band { background: var(--teal); padding: 5rem 10%; display: flex; justify-content: space-between; align-items: center; }
+      .cta-band h2 { font-family: 'Oswald'; font-size: 2.5rem; color: var(--black); text-transform: uppercase; }
+      .btn-dark { background: var(--black); color: var(--white); padding: 1rem 2.5rem; text-decoration: none; font-weight: 700; text-transform: uppercase; }
 
-        /* Footer */
-        footer { padding: 4rem 10%; border-top: 1px solid var(--steel); text-align: center; color: var(--grey); font-size: 0.8rem; letter-spacing: 1px; }
+      /* ── CONTACT ── */
+      .contact { background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; }
+      .contact-info { padding: 6rem 5rem; }
+      .contact-form-wrap { padding: 6rem 5rem; background: var(--charcoal); border-left: 1px solid var(--steel); }
+      .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+      .form-group label { font-size: 0.7rem; color: var(--teal); text-transform: uppercase; letter-spacing: 2px; }
+      input, select, textarea { background: var(--dark); border: 1px solid var(--mid-grey); color: white; padding: 0.8rem; font-family: inherit; }
+      #successBox { display:none; padding: 1rem; background: rgba(42,155,181,0.2); border: 1px solid var(--teal); color: var(--teal); margin-bottom: 1rem; }
 
-        /* Mobilanpassning */
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .contact-container { grid-template-columns: 1fr; }
-            .section { padding: 5rem 5%; }
-        }
+      /* ── FOOTER ── */
+      footer { background: var(--black); padding: 2.5rem 5rem; display: flex; justify-content: space-between; border-top: 1px solid var(--steel); align-items: center; }
+      .footer-copy { font-size: 0.8rem; color: var(--grey); }
+
+      /* Animationer */
+      .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+      .reveal.active { opacity: 1; transform: translateY(0); }
+
+      @media (max-width: 900px) {
+        .nav-links { display: none; }
+        .projects-grid, .contact, .reviews-grid { grid-template-columns: 1fr; }
+        .cta-band { flex-direction: column; gap: 2rem; text-align: center; }
+        .hero-stats { flex-wrap: wrap; justify-content: center; }
+      }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo">
-            <img src="logo.png" alt="ATAC Logo">
-        </div>
-        <ul class="nav-links">
-            <li><a href="#tjanster">Tjänster</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
-        <a href="#kontakt" class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.7rem;">Offert</a>
-    </nav>
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" alt="ATAC Logotyp">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Tjänster</a></li>
+    <li><a href="#projects">Projekt</a></li>
+    <li><a href="#reviews">Referenser</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+    <li><a href="#contact" class="nav-cta">Få Offert</a></li>
+  </ul>
+</nav>
 
-    <section class="hero">
-        <div class="reveal">
-            <h1 class="hero-title">ATAC<span>.</span></h1>
-            <p class="hero-subtitle">Entreprenad & Montage</p>
-            <a href="#tjanster" class="btn-primary">Våra Tjänster</a>
-        </div>
-    </section>
+<section class="hero">
+  <div class="hero-content reveal">
+    <div class="hero-logo-big"><img src="logo_större.png" alt="ATAC Stor Logotyp"></div>
+    <div class="hero-eyebrow">Precision & Kvalitet</div>
+    <h1 class="hero-title">Vi bygger <em>framtiden</em></h1>
+    <p class="hero-desc">Specialister på entreprenad och montage med fokus på hållbara lösningar och teknisk expertis.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Starta Projekt</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Års Erfarenhet</div></div>
+      <div class="stat-item"><div class="stat-num">450+</div><div class="stat-label">Projekt Klara</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Nöjda Kunder</div></div>
+    </div>
+  </div>
+</section>
 
-    <section id="tjanster" class="section">
-        <h2 style="font-family: 'Oswald'; font-size: 2.5rem; text-transform: uppercase;">Expertis</h2>
-        <div class="services-grid">
-            <div class="service-card reveal">
-                <h3>01 / MONTAGE</h3>
-                <p>Professionellt montage av stålkonstruktioner och industriella komponenter med millimeterprecision.</p>
-            </div>
-            <div class="service-card reveal">
-                <h3>02 / ENTREPRENAD</h3>
-                <p>Vi tar helhetsansvar för ditt byggprojekt, från markarbete till färdigställande.</p>
-            </div>
-            <div class="service-card reveal">
-                <h3>03 / SERVICE</h3>
-                <p>Löpande underhåll och akuta reparationer för att säkra er driftkontinuitet.</p>
-            </div>
-        </div>
-    </section>
+<section id="services" class="section services">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Vad vi gör</div>
+    <h2 class="section-title">Våra Tjänster</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <h3 class="service-title">Industrimontage</h3>
+      <p class="service-desc">Vi utför avancerade montage av stål och maskiner för tung industri.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <h3 class="service-title">Byggentreprenad</h3>
+      <p class="service-desc">Helhetsansvar för byggprojekt från planering till slutbesiktning.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <h3 class="service-title">Projektledning</h3>
+      <p class="service-desc">Strategisk styrning för att säkerställa att tidsplan och budget hålls.</p>
+    </div>
+  </div>
+</section>
 
-    <section id="kontakt" class="section" style="background: var(--dark);">
-        <div class="reveal">
-            <h2 style="font-family: 'Oswald'; font-size: 2.5rem; text-transform: uppercase;">Projektförfrågan</h2>
-            <div class="contact-container">
-                <div>
-                    <p style="color: var(--grey); margin-bottom: 2rem;">Vi svarar normalt inom 24 timmar på alla förfrågningar. Beskriv ditt ärende så återkopplar vi med ett förslag.</p>
-                    <p><strong>E-post:</strong> info@atacentreprenad.se</p>
-                </div>
-                
-                <form id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Namn" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="E-postadress" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" rows="4" placeholder="Beskriv projektet..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">Skicka Förfrågan</button>
-                    <div id="successMsg">Tack! Meddelandet har skickats.</div>
-                </form>
-            </div>
-        </div>
-    </section>
+<section id="projects" class="section projects">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Referenser</div>
+    <h2 class="section-title">Utvalda Projekt</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card large reveal">
+      <img src="projekt1.jpg" alt="Projekt 1">
+      <div class="project-info">
+        <div class="project-name">Industrihall Stockholm</div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <img src="projekt2.jpg" alt="Projekt 2">
+      <div class="project-info"><div class="project-name">Stålkonstruktion Uppsala</div></div>
+    </div>
+    <div class="project-card reveal">
+      <img src="projekt3.jpg" alt="Projekt 3">
+      <div class="project-info"><div class="project-name">Specialmontage Gävle</div></div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2026 ATAC ENTREPRENAD & MONTAGE AB | KVALITET & PRECISION</p>
-    </footer>
+<section id="reviews" class="section reviews">
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-text">"ATAC levererade över förväntan. Deras precision i montaget var imponerande."</div>
+      <div class="review-name">- Janne Andersson, Projektledare</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-text">"Proffsigt bemötande och extremt kunniga inom stålkonstruktion."</div>
+      <div class="review-name">- Maria Lindqvist, Fastighetsägare</div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Scroll-animation (Reveal)
-        const reveal = () => {
-            const reveals = document.querySelectorAll(".reveal");
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add("active");
-                }
-            });
-        };
-        window.addEventListener("scroll", reveal);
-        reveal(); // Kör vid start
+<section class="cta-band reveal">
+  <h2>Redo att starta ditt nästa projekt?</h2>
+  <a href="#contact" class="btn-dark">Kontakta oss idag</a>
+</section>
 
-        // Formulärhantering
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            const success = document.getElementById('successMsg');
-            
-            btn.innerText = "Skickar...";
-            btn.style.opacity = "0.5";
-            btn.disabled = true;
+<section id="contact" class="contact">
+  <div class="contact-info reveal">
+    <div class="section-eyebrow">Hör av dig</div>
+    <h2 class="section-title">Kontaktuppgifter</h2>
+    <div style="margin-top: 3rem;">
+      <p><strong>Adress:</strong> Industrivägen 12, Stockholm</p>
+      <p><strong>E-post:</strong> info@atacentreprenad.se</p>
+      <p><strong>Tele:</strong> 08-123 45 67</p>
+    </div>
+  </div>
+  <div class="contact-form-wrap reveal">
+    <div id="successBox">Tack! Vi återkommer så snart vi kan.</div>
+    <form id="mainContactForm">
+      <div class="form-group">
+        <label>Namn</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>E-post</label>
+        <input type="email" required>
+      </div>
+      <div class="form-group">
+        <label>Ärende</label>
+        <select>
+          <option>Offertförfrågan</option>
+          <option>Allmän fråga</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Meddelande</label>
+        <textarea rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Skicka Meddelande</button>
+    </form>
+  </div>
+</section>
 
-            // Simulerar ett skickat mail
-            setTimeout(() => {
-                this.reset();
-                btn.style.display = "none";
-                success.style.display = "block";
-            }, 1500);
-        });
-    </script>
+<footer>
+  <div class="footer-copy">&copy; 2026 ATAC Entreprenad & Montage AB</div>
+  <div class="footer-logo"><img src="logo.png" alt="Logo"></div>
+</footer>
+
+<script>
+    // Reveal animation
+    function reveal() {
+      var reveals = document.querySelectorAll(".reveal");
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
+
+    // Formulär-logik
+    document.getElementById('mainContactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        this.style.display = 'none';
+        document.getElementById('successBox').style.display = 'block';
+    });
+</script>
+
 </body>
 </html>
