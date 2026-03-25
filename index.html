@@ -4,97 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATAC Entreprenad & Montage AB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --black: #080808;
-            --dark: #111111;
-            --charcoal: #1a1a1a;
-            --steel: #252525;
-            --teal: #2a9bb5;
-            --teal-light: #3db8d4;
-            --white: #f0f0f0;
-            --grey: #888888;
-            --light-grey: #c0c0c0;
+            /* Färgpalett - Clean men inte "helt svart" */
+            --primary: #2a9bb5; /* Teal */
+            --primary-light: #3db8d4;
+            --primary-dark: #1e7a8f;
+            
+            --bg-dark: #121212; /* Mycket mörkgrå, mjukare än kolsvart */
+            --bg-panel: #1a1a1a; /* För kort/paneler på mörk bakgrund */
+            --bg-light: #f4f7f6; /* Ljusgrå/vit för ljusa sektioner */
+            --bg-white: #ffffff;
+
+            --text-dark: #1a1a1a;
+            --text-light: #f0f0f0;
+            --text-grey: #888888;
+            
+            --border-color: #ddd;
+            --border-dark: #252525;
+            
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; line-height: 1.6; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Barlow', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
 
-        /* Navigation */
+        /* Navigation - Renare och ljusare */
         nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            position: fixed; top: 0; width: 100%; z-index: 1000;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 1.5rem 5%; background: rgba(8, 8, 8, 0.95);
-            border-bottom: 1px solid var(--steel);
+            padding: 1rem 5%; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 2px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .nav-logo img { height: 50px; width: auto; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--light-grey); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; font-weight: 600; }
-        .nav-links a:hover { color: var(--teal); }
+        .nav-logo img { height: 45px; width: auto; display: block; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
 
-        /* Hero */
+        /* Hero - Professionell gradient istället för bild */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            flex-direction: column; text-align: center; background: var(--black);
-            padding: 0 20px;
+            height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #080808 100%);
+            color: white; text-align: center; padding: 0 20px;
         }
-        .hero-logo img { height: 250px; width: auto; margin-bottom: 2rem; }
-        .hero-title { font-family: 'Oswald'; font-size: 5rem; text-transform: uppercase; line-height: 1; }
-        .hero-title span { color: var(--teal); }
-        .hero-subtitle { font-size: 1.5rem; color: var(--grey); margin-top: 1rem; text-transform: uppercase; letter-spacing: 5px; }
+        .hero-logo img { height: 180px; width: auto; margin-bottom: 2rem; }
+        .hero-title { font-family: 'Oswald'; font-size: 4.5rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 0.5rem; }
+        .hero-title span { color: var(--primary); }
+        .hero-subtitle { font-size: 1.2rem; letter-spacing: 5px; text-transform: uppercase; opacity: 0.9; color: var(--text-grey); }
 
-        /* Sektioner */
-        .section { padding: 8rem 10%; scroll-margin-top: 80px; }
-        .section-title { font-family: 'Oswald'; font-size: 3rem; text-transform: uppercase; margin-bottom: 3rem; border-left: 5px solid var(--teal); padding-left: 1.5rem; }
+        /* Sektioner - Struktur */
+        .section { padding: 6rem 10%; scroll-margin-top: 80px; }
+        .section-title { font-family: 'Oswald'; font-size: 2.8rem; text-transform: uppercase; margin-bottom: 3rem; color: var(--text-dark); position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 4px; background: var(--primary); }
 
         /* Om oss */
-        .about-text { max-width: 900px; font-size: 1.1rem; color: var(--light-grey); margin-bottom: 2rem; }
+        .about-text { max-width: 800px; font-size: 1.1rem; color: #444; }
 
-        /* Tjänster */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .service-card { background: var(--charcoal); padding: 3rem; border: 1px solid var(--steel); transition: 0.3s; }
-        .service-card:hover { border-color: var(--teal); transform: translateY(-5px); }
-        .service-card h3 { font-family: 'Oswald'; font-size: 1.5rem; margin-bottom: 1rem; color: var(--teal); }
-
-        /* Stats Bar */
-        .stats-bar { background: var(--teal); color: var(--black); padding: 4rem 10%; display: flex; justify-content: space-around; text-align: center; }
-        .stat-item h2 { font-family: 'Oswald'; font-size: 3.5rem; }
-        .stat-item p { font-weight: 700; text-transform: uppercase; font-size: 0.9rem; }
-
-        /* Projekt */
-        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
-        .project-item { position: relative; height: 400px; overflow: hidden; background: var(--charcoal); }
-        .project-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.5s; }
-        .project-item:hover img { opacity: 0.8; transform: scale(1.05); }
-        .project-overlay { position: absolute; bottom: 20px; left: 20px; }
-        .project-overlay h4 { font-family: 'Oswald'; font-size: 1.2rem; text-transform: uppercase; }
-
-        /* Recensioner */
-        .reviews-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
-        .review-box { background: var(--charcoal); padding: 3rem; border-left: 3px solid var(--teal); }
-        .review-text { font-style: italic; margin-bottom: 1rem; color: var(--light-grey); }
-        .review-author { font-weight: 700; color: var(--teal); }
-
-        /* Kontakt & Karta */
-        .contact-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        .contact-form input, .contact-form textarea, .contact-form select {
-            width: 100%; padding: 1rem; margin-bottom: 1rem; background: var(--charcoal);
-            border: 1px solid var(--steel); color: white; font-family: inherit;
+        /* Tjänster - Ljusa kort med skugga */
+        .services-section { background: var(--bg-white); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .service-card { 
+            background: var(--bg-light); padding: 3rem; border-radius: 8px; 
+            transition: var(--transition); border-bottom: 4px solid transparent; box-shadow: var(--card-shadow);
+            display: flex; flex-direction: column; gap: 1rem;
         }
-        .btn-submit { background: var(--teal); color: var(--black); border: none; padding: 1rem 2rem; font-weight: 700; cursor: pointer; text-transform: uppercase; width: 100%; transition: 0.3s; }
-        .btn-submit:hover { background: var(--teal-light); }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--primary); background: var(--bg-white); }
+        .service-card h3 { font-family: 'Oswald'; font-size: 1.6rem; color: var(--primary); text-transform: uppercase; }
+        .service-card p { color: #555; font-size: 1rem; }
+
+        /* Stats Bar - Mörk kontrast */
+        .stats-bar { background: var(--bg-dark); color: white; padding: 5rem 10%; display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 2rem; }
+        .stat-item h2 { font-family: 'Oswald'; font-size: 3.5rem; color: var(--primary); line-height: 1; }
+        .stat-item p { text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; color: var(--text-grey); font-weight: 600; }
+
+        /* Projekt - Dina bilder, bättre presentation */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
+        .project-item { position: relative; height: 350px; border-radius: 8px; overflow: hidden; box-shadow: var(--card-shadow); background: var(--bg-panel); }
+        .project-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; opacity: 0.8; }
+        .project-overlay { 
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); 
+            display: flex; align-items: flex-end; padding: 2rem; opacity: 0; transition: var(--transition);
+        }
+        .project-item:hover img { transform: scale(1.05); opacity: 1; }
+        .project-item:hover .project-overlay { opacity: 1; }
+        .project-overlay h4 { color: white; font-family: 'Oswald'; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Recensioner - Ljusare */
+        .reviews-section { background: var(--bg-white); }
+        .reviews-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .review-box { background: var(--bg-light); padding: 3rem; border-radius: 8px; border-left: 5px solid var(--primary); box-shadow: var(--card-shadow); }
+        .review-text { font-style: italic; margin-bottom: 1.5rem; color: #444; font-size: 1.05rem; }
+        .review-author { font-weight: 700; color: var(--primary); text-transform: uppercase; font-size: 0.9rem; }
+
+        /* Kontakt - Clean och strukturerad */
+        .contact-section { background: var(--bg-light); }
+        .contact-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info-p { margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .contact-info-p strong { color: var(--text-dark); }
         
-        .map-wrapper { width: 100%; height: 350px; margin-top: 2rem; border: 1px solid var(--steel); filter: grayscale(1) invert(0.9); }
+        .contact-form { background: var(--bg-white); padding: 3rem; border-radius: 8px; box-shadow: var(--card-shadow); }
+        .contact-form input, .contact-form textarea, .contact-form select {
+            width: 100%; padding: 1rem; margin-bottom: 1.2rem; background: var(--bg-light);
+            border: 1px solid var(--border-color); border-radius: 4px; font-family: inherit; font-size: 1rem; color: var(--text-dark);
+            transition: var(--transition);
+        }
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+            border-color: var(--primary); outline: none; background: white;
+        }
+        .btn-submit { 
+            background: var(--primary); color: white; border: none; padding: 1.2rem; 
+            font-weight: 700; cursor: pointer; text-transform: uppercase; width: 100%; border-radius: 4px; font-size: 1rem; letter-spacing: 1px; transition: var(--transition); 
+        }
+        .btn-submit:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(42, 155, 181, 0.3); }
 
-        /* Footer */
-        footer { padding: 4rem 10%; background: var(--dark); border-top: 1px solid var(--steel); display: flex; justify-content: space-between; align-items: center; }
+        /* Karta - Inverterad för clean look */
+        .map-wrapper { width: 100%; height: 300px; margin-top: 2rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); filter: grayscale(1) invert(0.9); box-shadow: var(--card-shadow); }
 
+        /* Footer - Ljus och ren */
+        footer { padding: 3rem 10%; background: var(--bg-white); border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        footer p { color: var(--text-grey); font-size: 0.9rem; }
+        footer img { height: 35px; width: auto; opacity: 0.8; }
+
+        /* Responsivitet */
+        @media (max-width: 992px) {
+            .section { padding: 4rem 5%; }
+            .hero-title { font-size: 3.5rem; }
+            .contact-flex { grid-template-columns: 1fr; gap: 3rem; }
+        }
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-title { font-size: 3rem; }
-            .contact-flex, .projects-grid, .reviews-container, .stats-bar { grid-template-columns: 1fr; flex-direction: column; gap: 2rem; }
+            .nav-links { display: none; } /* Enkel mobilmeny-lösning (göm) */
+            .hero-title { font-size: 2.8rem; }
+            .hero-logo img { height: 120px; }
+            .section-title { font-size: 2.2rem; }
+            .stat-item h2 { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -119,24 +165,24 @@
     <section id="om" class="section">
         <h2 class="section-title">Om oss</h2>
         <div class="about-text">
-            <p>ATAC Entreprenad & Montage AB grundades med visionen att erbjuda marknadens mest precisa industrimontage. Vi kombinerar teknisk expertis med ett starkt fokus på säkerhet och kvalitet. Vårt team av erfarna montörer och projektledare ser till att varje uppdrag utförs enligt högsta standard.</p>
+            <p>ATAC Entreprenad & Montage AB grundades med visionen att erbjuda marknadens mest precisa industrimontage. Vi kombinerar teknisk expertis med ett starkt fokus på säkerhet och kvalitet. Vårt team av erfarna montörer och projektledare ser till att varje uppdrag utförs enligt högsta standard, oavsett projektets storlek eller komplexitet.</p>
         </div>
     </section>
 
-    <section id="tjanster" class="section" style="background: var(--dark);">
+    <section id="tjanster" class="section services-section">
         <h2 class="section-title">Våra Tjänster</h2>
         <div class="services-grid">
             <div class="service-card">
                 <h3>Industrimontage</h3>
-                <p>Specialiserade på tunga montage, maskininstallationer och stålkonstruktioner för industriella miljöer.</p>
+                <p>Specialiserade på tunga montage, maskininstallationer och stålkonstruktioner för krävande industriella miljöer.</p>
             </div>
             <div class="service-card">
                 <h3>Byggentreprenad</h3>
-                <p>Vi tar totalansvar för byggprojekt, från projektering till färdigställande och slutbesiktning.</p>
+                <p>Vi tar totalansvar för byggprojekt, från tidig projektering till färdigställande och slutbesiktning.</p>
             </div>
             <div class="service-card">
                 <h3>Service & Underhåll</h3>
-                <p>Säkra driften med våra kundanpassade underhållsavtal och akuta reparationstjänster.</p>
+                <p>Säkra driften och minimera stopp med våra kundanpassade underhållsavtal och akuta reparationstjänster.</p>
             </div>
         </div>
     </section>
@@ -144,86 +190,95 @@
     <section class="stats-bar">
         <div class="stat-item"><h2>15+</h2><p>År i branschen</p></div>
         <div class="stat-item"><h2>500+</h2><p>Projekt klara</p></div>
-        <div class="stat-item"><h2>100%</h2><p>Kundnöjdhet</p></div>
+        <div class="stat-item"><h2>100%</h2><p>Kundfokus</p></div>
     </section>
 
     <section id="projekt" class="section">
         <h2 class="section-title">Senaste Projekten</h2>
         <div class="projects-grid">
             <div class="project-item">
-                <img src="projekt1.jpg" alt="Projekt 1">
+                <img src="projekt1.jpg" alt="Stålhall Uppsala">
                 <div class="project-overlay"><h4>Stålhall Uppsala</h4></div>
             </div>
             <div class="project-item">
-                <img src="projekt2.jpg" alt="Projekt 2">
+                <img src="projekt2.jpg" alt="Industrimontage Gävle">
                 <div class="project-overlay"><h4>Industrimontage Gävle</h4></div>
             </div>
             <div class="project-item">
-                <img src="projekt3.jpg" alt="Projekt 3">
+                <img src="projekt3.jpg" alt="Maskinflytt Stockholm">
                 <div class="project-overlay"><h4>Maskinflytt Stockholm</h4></div>
             </div>
             <div class="project-item">
-                <img src="projekt4.jpg" alt="Projekt 4">
+                <img src="projekt4.jpg" alt="Specialentreprenad">
                 <div class="project-overlay"><h4>Specialentreprenad</h4></div>
             </div>
         </div>
     </section>
 
-    <section class="section" style="background: var(--dark);">
+    <section class="section reviews-section">
         <h2 class="section-title">Vad kunderna säger</h2>
         <div class="reviews-container">
             <div class="review-box">
-                <p class="review-text">"ATAC levererar alltid i tid och med högsta kvalitet i sina montage. Deras personal är extremt kunnig."</p>
+                <p class="review-text">"ATAC levererar alltid i tid och med högsta kvalitet i sina montage. Deras personal är extremt kunnig och lösningsorienterad."</p>
                 <p class="review-author">- Janne, Produktionschef</p>
             </div>
             <div class="review-box">
-                <p class="review-text">"Ett pålitligt gäng som löser komplexa problem på ett smidigt sätt. Kan varmt rekommenderas."</p>
+                <p class="review-text">"Ett pålitligt gäng som löser komplexa problem på ett smidigt sätt. Kan varmt rekommenderas för alla typer av montage."</p>
                 <p class="review-author">- Maria, Projektledare</p>
             </div>
         </div>
     </section>
 
-    <section id="kontakt" class="section">
+    <section id="kontakt" class="section contact-section">
         <div class="contact-flex">
             <div>
                 <h2 class="section-title">Kontaktuppgifter</h2>
-                <p><strong>Besöksadress:</strong> Industrivägen 10, Stockholm</p>
-                <p><strong>E-post:</strong> info@atacentreprenad.se</p>
-                <p><strong>Telefon:</strong> 08-123 456 78</p>
+                <div style="margin-bottom: 2rem;">
+                    <p class="contact-info-p"><strong>Besöksadress:</strong><br>Industrivägen 10, Stockholm</p>
+                    <p class="contact-info-p"><strong>E-post:</strong><br><a href="mailto:info@atacentreprenad.se" style="color: var(--primary); text-decoration: none;">info@atacentreprenad.se</a></p>
+                    <p class="contact-info-p"><strong>Telefon:</strong><br>08-123 456 78</p>
+                </div>
                 
                 <div class="map-wrapper">
                     <iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Industriv%C3%A4gen%2010%2C%20Stockholm&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
                 </div>
             </div>
+            
             <div class="contact-form">
+                <h3 style="font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--text-dark);">Skicka en förfrågan</h3>
                 <form id="contactForm">
-                    <input type="text" placeholder="Namn" required>
-                    <input type="email" placeholder="E-post" required>
+                    <input type="text" placeholder="Ditt namn" required>
+                    <input type="email" placeholder="Din e-postadress" required>
                     <select>
-                        <option>Välj ärende</option>
+                        <option value="" disabled selected>Välj ärende</option>
                         <option>Offertförfrågan</option>
-                        <option>Allmän fråga</option>
                     </select>
-                    <textarea rows="5" placeholder="Meddelande" required></textarea>
+                    <textarea rows="5" placeholder="Beskriv ditt projekt eller din fråga..." required></textarea>
                     <button type="submit" class="btn-submit">Skicka meddelande</button>
                 </form>
-                <div id="success" style="display:none; color: var(--teal); margin-top: 1rem; padding: 1rem; border: 1px solid var(--teal);">Tack! Vi återkopplar så snart som möjligt.</div>
+                <div id="success" style="display:none; color: var(--primary); margin-top: 1rem; padding: 1rem; border: 1px solid var(--primary); border-radius: 4px; background: rgba(42, 155, 181, 0.1); text-align: center; font-weight: 600;">Tack! Vi återkopplar så snart som möjligt.</div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 ATAC Entreprenad & Montage AB</p>
-        <img src="logop.png" alt="Logo" style="height: 40px;">
+        <p>© 2026 ATAC Entreprenad & Montage AB. Alla rättigheter förbehållna.</p>
+        <img src="logop.png" alt="Logo">
     </footer>
 
     <script>
+        // Enkel formulärhantering (behållen logik)
         document.getElementById('contactForm').onsubmit = function(e) {
             e.preventDefault();
             this.style.display = 'none';
+            this.previousElementSibling.style.display = 'none'; // Göm H3 rubriken också
             document.getElementById('success').style.display = 'block';
+            
+            // Scrolla ner lite så man ser framgångsmeddelandet tydligt
+            setTimeout(() => {
+                document.getElementById('success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
         };
     </script>
 </body>
-</html>
 </html>
